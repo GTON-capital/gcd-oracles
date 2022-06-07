@@ -4,5 +4,9 @@
 /build/
 coverage
 coverage.json
+package-lock.json
+artifacts
+
+.env
 
 contracts/**/artifacts/
