@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: agpl-3.0
 
-pragma solidity ^0.7.6;
+pragma solidity 0.7.6;
 pragma abicoder v2;
 
 // import '@uniswap/v3-periphery/contracts/libraries/OracleLibrary.sol';
@@ -21,12 +21,14 @@ contract UniswapV3Oracle is IOracleUsd {
 
   mapping (address => QuoteParams) public quoteParams;
 
-  // Unit Protocol parameters
-  IVaultParameters public constant vaultParameters = IVaultParameters(0xB46F8CF42e504Efe8BEf895f848741daA55e9f1D);
+  // GCD Protocol parameters
+  // Ropsten: 0x634cd07fce65a2f2930b55c7b1b20a97196d362f
+  IVaultParameters public constant vaultParameters = IVaultParameters(0x634cd07fce65a2f2930b55c7b1b20a97196d362f);
 
   // Uniswap V3 factory
   address public constant factory = 0x1F98431c8aD98523631AE4a59f267346ea31F984;
 
+  // wETH
   address public defaultQuoteAsset = 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2;
 
   // 0.3%
@@ -34,7 +36,7 @@ contract UniswapV3Oracle is IOracleUsd {
 
   uint32 public defaultTWAPPeriod = 30 minutes;
 
-  // Unit Protocol oracle registry
+  // GCD Protocol oracle registry
   IOracleRegistry public constant oracleRegistry = IOracleRegistry(0x75fBFe26B21fd3EA008af0C764949f8214150C8f);
 
   event QuoteParamsSet(address indexed baseAsset, QuoteParams quoteParams);
