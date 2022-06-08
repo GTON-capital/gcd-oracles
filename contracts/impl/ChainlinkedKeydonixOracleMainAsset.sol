@@ -12,7 +12,7 @@ import "../helpers/IOracleEth.sol";
 import "../helpers/IKeydonixOracleEth.sol";
 import "../helpers/IKeydonixOracleUsd.sol";
 import { UniswapOracle, IUniswapV2Pair } from  '@keydonix/uniswap-oracle-contracts/source/UniswapOracle.sol';
-import "../helpers/AggregatorInterface.sol";
+import "../helpers/IAggregatorInterface.sol";
 import "../helpers/IUniswapV2Factory.sol";
 
 

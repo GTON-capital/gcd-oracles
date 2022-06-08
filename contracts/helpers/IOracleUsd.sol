@@ -1,3 +1,5 @@
+pragma solidity 0.7.6;
+
 interface IOracleUsd {
 
     // returns Q112-encoded value

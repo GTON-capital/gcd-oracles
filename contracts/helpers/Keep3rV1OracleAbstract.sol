@@ -1,9 +1,9 @@
 // SPDX-License-Identifier: bsl-1.1
+pragma solidity 0.7.6;
 
 /*
   Copyright 2020 Unit Protocol: Artem Zakharov (az@unit.xyz).
 */
-pragma solidity ^0.6.8;
 pragma experimental ABIEncoderV2;
 
 abstract contract Keep3rV1OracleAbstract {

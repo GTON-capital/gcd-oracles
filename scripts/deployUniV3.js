@@ -12,7 +12,7 @@ async function deployUniV3() {
 
     console.log("Account balance:", (await deployer.getBalance()).toString())
 
-    const Factory = await ethers.getContractFactory("UniswapV3Oracle")
+    const Factory = await ethers.getContractFactory("UniswapV3OracleGCD")
     const contract = await Factory.deploy(
     )
     await contract.deployed()

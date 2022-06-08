@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: bsl-1.1
+pragma solidity >=0.6.8 <=0.7.6;
+
 interface IVaultParameters {
     function canModifyVault ( address ) external view returns ( bool );
     function foundation (  ) external view returns ( address );

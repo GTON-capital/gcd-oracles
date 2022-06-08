@@ -5,13 +5,13 @@ pragma abicoder v2;
 
 // import '@uniswap/v3-periphery/contracts/libraries/OracleLibrary.sol';
 // import '@uniswap/v3-periphery/contracts/libraries/PoolAddress.sol';
-import "./OracleLibrary.sol";
-import "./PoolAddress.sol";
-import "./IOracleUsd.sol";
-import "./IVaultParameters.sol";
-import "./IOracleRegistry.sol";
+import "./uniswapOracle/OracleLibrary.sol";
+import "./uniswapOracle/PoolAddress.sol";
+import "../interface/IOracleUsd.sol";
+import "../interface/IVaultParameters.sol";
+import "../interface/IOracleRegistry.sol";
 
-contract UniswapV3Oracle is IOracleUsd {
+contract UniswapV3OracleGCD is IOracleUsd {
 
   struct QuoteParams {
     address quoteAsset;
@@ -23,7 +23,7 @@ contract UniswapV3Oracle is IOracleUsd {
 
   // GCD Protocol parameters
   // Ropsten: 0x634cd07fce65a2f2930b55c7b1b20a97196d362f
-  IVaultParameters public constant vaultParameters = IVaultParameters(0x634cd07fce65a2f2930b55c7b1b20a97196d362f);
+  IVaultParameters public constant vaultParameters = IVaultParameters(0x634Cd07fce65a2f2930B55c7b1b20a97196d362F);
 
   // Uniswap V3 factory
   address public constant factory = 0x1F98431c8aD98523631AE4a59f267346ea31F984;
@@ -37,28 +37,29 @@ contract UniswapV3Oracle is IOracleUsd {
   uint32 public defaultTWAPPeriod = 30 minutes;
 
   // GCD Protocol oracle registry
-  IOracleRegistry public constant oracleRegistry = IOracleRegistry(0x75fBFe26B21fd3EA008af0C764949f8214150C8f);
+  // Ropsten: 0x85d7676ff4339C7e59eb7e90F160E909fc65d3bd
+  IOracleRegistry public constant oracleRegistry = IOracleRegistry(0x85d7676ff4339C7e59eb7e90F160E909fc65d3bd);
 
   event QuoteParamsSet(address indexed baseAsset, QuoteParams quoteParams);
   event DefaultTWAPPeriodSet(uint32 twapPeriod);
   event DefaultQuoteAssetSet(address quoteAsset);
 
-  modifier g() {
-    require(vaultParameters.isManager(msg.sender), "UniswapV3Oracle: !g");
+  modifier onlyManager() {
+    require(vaultParameters.isManager(msg.sender), "UniswapV3Oracle: !manager");
     _;
   }
 
-  function setQuoteParams(address baseAsset, QuoteParams calldata quoteP) external g {
+  function setQuoteParams(address baseAsset, QuoteParams calldata quoteP) external onlyManager {
     quoteParams[baseAsset] = quoteP;
     emit QuoteParamsSet(baseAsset, quoteP);
   }
 
-  function setDefaultTWAPPeriod(uint32 twapPeriod) external g {
+  function setDefaultTWAPPeriod(uint32 twapPeriod) external onlyManager {
     defaultTWAPPeriod = twapPeriod;
     emit DefaultTWAPPeriodSet(twapPeriod);
   }
 
-  function setDefaultQuoteAsset(address quoteAsset) external g {
+  function setDefaultQuoteAsset(address quoteAsset) external onlyManager {
     defaultQuoteAsset = quoteAsset;
     emit DefaultQuoteAssetSet(quoteAsset);
   }
@@ -89,7 +90,7 @@ contract UniswapV3Oracle is IOracleUsd {
     PoolAddress.PoolKey memory poolKey = PoolAddress.getPoolKey(baseAsset, quote.quoteAsset, quote.poolFee);
     address pool = PoolAddress.computeAddress(factory, poolKey);
 
-    // (int24 twaTick, ) = OracleLibrary.consult(pool, quote.twapPeriod); // current OZ version
+    // (int24 twaTick, ) = OracleLibrary.consult(pool, quote.twapPeriod); // current UniV3 version
     int24 twaTick = OracleLibrary.consult(pool, quote.twapPeriod); // Old version - added here
     uint twaPrice = OracleLibrary.getQuoteAtTick(twaTick, uint128(amount), baseAsset, quote.quoteAsset);
 

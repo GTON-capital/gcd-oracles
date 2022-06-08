@@ -3,11 +3,11 @@
 /*
   Copyright 2020 Unit Protocol: Artem Zakharov (az@unit.xyz).
 */
-pragma solidity ^0.6.8;
+pragma solidity 0.7.6;
 pragma experimental ABIEncoderV2;
 
 import "../helpers/SafeMath.sol";
-import "../helpers/AggregatorInterface.sol";
+import "../helpers/IAggregatorInterface.sol";
 import "../helpers/Keep3rV1OracleAbstract.sol";
 import "../helpers/IUniswapV2Factory.sol";
 import "../helpers/UniswapV2Library.sol";

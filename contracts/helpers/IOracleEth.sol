@@ -1,3 +1,5 @@
+pragma solidity >=0.6.8 <=0.7.6;
+
 interface IOracleEth {
 
     // returns Q112-encoded value
