@@ -6,10 +6,7 @@
 pragma solidity >=0.6.8 <=0.7.6;
 
 interface IAggregatorInterface {
-    function latestAnswer() external view returns (int256); // deprecated
-    function latestTimestamp() external view returns (uint256); // deprecated
-    function latestRound() external view returns (uint256);
-    function decimals() external view returns (uint256);
+    function decimals() external view returns (uint8);
 
     function latestRoundData()
     external

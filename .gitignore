@@ -9,6 +9,8 @@ artifacts
 types
 cache
 
+yarn.lock
+
 .env
 
 contracts/**/artifacts/
