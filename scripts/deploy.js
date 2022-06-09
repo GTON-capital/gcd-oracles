@@ -1,21 +1,25 @@
 const hre = require("hardhat");
 const { ethers } = hre;
 
-const oracleRegistryRopsten = "0x85d7676ff4339C7e59eb7e90F160E909fc65d3bd"
 const wethAddressRopsten = "0xc778417e063141139fce010982780140aa0cd5ab"
-const wethAggregatorUSDRopsten = "0xc6d5398e7174eb8f2F831C40E0711d5d613df27E" // ETH / USD
-const chainlinkedOracleMainAssetRopsten = ""
-const uniV3OracleRopsten = "0xC8159047230668ffa0Fe7a026d2a5BC4D95bf981"
-const vaultParametersRopsten = "0x634cd07fce65a2f2930b55c7b1b20a97196d362f"
-
 const wethAddressEthereum = "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2"
-const wethAggregatorUSDEthereum = "0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419" // ETH / USD
-const vaultParametersEth = ""
-
 const wethAddress = wethAddressRopsten
+
+const wethAggregatorUSDRopsten = "0xc6d5398e7174eb8f2F831C40E0711d5d613df27E"
+const wethAggregatorUSDEthereum = "0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419"
 const wethAggregatorUSD = wethAggregatorUSDRopsten // ETH / USD
+
+const chainlinkedOracleMainAssetRopsten = "0x406B838E5Ac09D90e7cB48187AD7f4075184eB28"
+const chainlinkedOracleMainAssetEthereum = ""
 const chainlinkedOracleMainAsset = chainlinkedOracleMainAssetRopsten
+
+const vaultParametersRopsten = "0x634cd07fce65a2f2930b55c7b1b20a97196d362f"
+const vaultParametersEth = ""
 const vaultParameters = vaultParametersRopsten
+
+const oracleRegistryRopsten = "0x85d7676ff4339C7e59eb7e90F160E909fc65d3bd"
+
+const uniV3OracleRopsten = "0xC8159047230668ffa0Fe7a026d2a5BC4D95bf981"
 
 async function main() {
     await deployChainlinkedOracleMainAsset()
