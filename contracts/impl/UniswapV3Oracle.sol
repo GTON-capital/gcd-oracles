@@ -29,7 +29,9 @@ contract UniswapV3OracleGCD is IOracleUsd {
   address public constant factory = 0x1F98431c8aD98523631AE4a59f267346ea31F984;
 
   // wETH
-  address public defaultQuoteAsset = 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2;
+  // Ropsten: 0xc778417e063141139fce010982780140aa0cd5ab
+  // Ethereum: 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2
+  address public defaultQuoteAsset = 0xc778417e063141139fce010982780140aa0cd5ab;
 
   // 0.3%
   uint24 public constant defaultPoolFee = 3000;
