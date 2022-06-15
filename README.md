@@ -1,4 +1,4 @@
-# Unit Protocol Oracles
+# GCD Protocol Oracles
 
-The repository contains source code of Unit Protocol oracle system
+The repository contains source code of GCD Protocol oracle system
 

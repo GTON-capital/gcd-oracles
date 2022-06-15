@@ -1,7 +1,7 @@
 const hre = require("hardhat");
 const { ethers } = hre;
 
-const wethAddressRopsten = "0xc778417e063141139fce010982780140aa0cd5ab"
+const wethAddressRopsten = "0xc778417E063141139Fce010982780140Aa0cD5Ab"
 const wethAddressEthereum = "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2"
 const wethAddress = wethAddressRopsten
 

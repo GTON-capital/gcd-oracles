@@ -31,8 +31,8 @@ contract ChainlinkedKeydonixOraclePoolToken is IKeydonixOracleUsd {
     IVaultParameters public immutable vaultParameters;
 
     constructor(address _oracleRegistry, address _vaultParameters) public {
-        require(_oracleRegistry != address(0), "Unit Protocol: ZERO_ADDRESS");
-        require(_vaultParameters != address(0), "Unit Protocol: ZERO_ADDRESS");
+        require(_oracleRegistry != address(0), "GCD Protocol: ZERO_ADDRESS");
+        require(_vaultParameters != address(0), "GCD Protocol: ZERO_ADDRESS");
         oracleRegistry = IOracleRegistry(_oracleRegistry);
         vaultParameters = IVaultParameters(_vaultParameters);
         WETH = IOracleRegistry(_oracleRegistry).WETH();
@@ -64,7 +64,7 @@ contract ChainlinkedKeydonixOraclePoolToken is IKeydonixOracleUsd {
         } else if (pair.token1() == WETH) {
             underlyingAsset = pair.token0();
         } else {
-            revert("Unit Protocol: NOT_REGISTERED_PAIR");
+            revert("GCD Protocol: NOT_REGISTERED_PAIR");
         }
 
         uint eAvg = IKeydonixOracleEth(_selectOracle(underlyingAsset)).assetToEth(underlyingAsset, 1, proofData); // average price of 1 token in ETH
@@ -127,9 +127,9 @@ contract ChainlinkedKeydonixOraclePoolToken is IKeydonixOracleUsd {
 
     function _selectOracle(address asset) internal view returns (address oracle) {
         uint oracleType = _getOracleType(asset);
-        require(oracleType != 0, "Unit Protocol: INVALID_ORACLE_TYPE");
+        require(oracleType != 0, "GCD Protocol: INVALID_ORACLE_TYPE");
         oracle = oracleRegistry.oracleByType(oracleType);
-        require(oracle != address(0), "Unit Protocol: DISABLED_ORACLE");
+        require(oracle != address(0), "GCD Protocol: DISABLED_ORACLE");
     }
 
     function _getOracleType(address asset) internal view returns (uint) {
@@ -139,6 +139,6 @@ contract ChainlinkedKeydonixOraclePoolToken is IKeydonixOracleUsd {
                 return keydonixOracleTypes[i];
             }
         }
-        revert("Unit Protocol: NO_ORACLE_FOUND");
+        revert("GCD Protocol: NO_ORACLE_FOUND");
     }
 }

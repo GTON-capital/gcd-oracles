@@ -5,8 +5,8 @@ pragma abicoder v2;
 
 // import '@uniswap/v3-periphery/contracts/libraries/OracleLibrary.sol';
 // import '@uniswap/v3-periphery/contracts/libraries/PoolAddress.sol';
-import "./uniswapOracle/OracleLibrary.sol";
-import "./uniswapOracle/PoolAddress.sol";
+import "./uniswapV3Oracle/OracleLibrary.sol";
+import "./uniswapV3Oracle/PoolAddress.sol";
 import "../interface/IOracleUsd.sol";
 import "../interface/IVaultParameters.sol";
 import "../interface/IOracleRegistry.sol";
@@ -29,9 +29,9 @@ contract UniswapV3OracleGCD is IOracleUsd {
   address public constant factory = 0x1F98431c8aD98523631AE4a59f267346ea31F984;
 
   // wETH
-  // Ropsten: 0xc778417e063141139fce010982780140aa0cd5ab
+  // Ropsten: 0xc778417E063141139Fce010982780140Aa0cD5Ab
   // Ethereum: 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2
-  address public defaultQuoteAsset = 0xc778417e063141139fce010982780140aa0cd5ab;
+  address public defaultQuoteAsset = 0xc778417E063141139Fce010982780140Aa0cD5Ab;
 
   // 0.3%
   uint24 public constant defaultPoolFee = 3000;

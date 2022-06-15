@@ -43,8 +43,8 @@ contract ChainlinkedKeydonixOracleMainAsset is UniswapOracle, IKeydonixOracleEth
     )
         public
     {
-        require(address(uniFactory) != address(0), "Unit Protocol: ZERO_ADDRESS");
-        require(address(_oracleRegistry) != address(0), "Unit Protocol: ZERO_ADDRESS");
+        require(address(uniFactory) != address(0), "GCD Protocol: ZERO_ADDRESS");
+        require(address(_oracleRegistry) != address(0), "GCD Protocol: ZERO_ADDRESS");
 
         uniswapFactory = uniFactory;
         WETH = _oracleRegistry.WETH();
@@ -78,7 +78,7 @@ contract ChainlinkedKeydonixOracleMainAsset is UniswapOracle, IKeydonixOracleEth
         if (amount == 0) { return 0; }
         if (asset == WETH) { return amount.mul(Q112); }
         IUniswapV2Pair pair = IUniswapV2Pair(uniswapFactory.getPair(asset, WETH));
-        require(address(pair) != address(0), "Unit Protocol: UNISWAP_PAIR_DOES_NOT_EXIST");
+        require(address(pair) != address(0), "GCD Protocol: UNISWAP_PAIR_DOES_NOT_EXIST");
         (uint priceInEth, ) = getPrice(pair, WETH, MIN_BLOCKS_BACK, MAX_BLOCKS_BACK, proofData);
         return priceInEth.mul(amount);
     }

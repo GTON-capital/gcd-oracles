@@ -46,9 +46,9 @@ contract ChainlinkedKeep3rV1OracleMainAsset is IOracleUsd {
     )
         public
     {
-        require(address(_uniFactory) != address(0), "Unit Protocol: ZERO_ADDRESS");
-        require(address(_keep3rV1Oracle) != address(0), "Unit Protocol: ZERO_ADDRESS");
-        require(address(_oracleRegistry) != address(0), "Unit Protocol: ZERO_ADDRESS");
+        require(address(_uniFactory) != address(0), "GCD Protocol: ZERO_ADDRESS");
+        require(address(_keep3rV1Oracle) != address(0), "GCD Protocol: ZERO_ADDRESS");
+        require(address(_oracleRegistry) != address(0), "GCD Protocol: ZERO_ADDRESS");
 
         uniswapFactory = _uniFactory;
         keep3rV1Oracle = _keep3rV1Oracle;
@@ -92,7 +92,7 @@ contract ChainlinkedKeep3rV1OracleMainAsset is IOracleUsd {
         address pair = UniswapV2Library.pairFor(address(uniswapFactory), tokenIn, WETH);
         (address token0,) = UniswapV2Library.sortTokens(tokenIn, WETH);
         uint observationLength = keep3rV1Oracle.observationLength(pair);
-        require(observationLength > 1, "Unit Protocol: NOT_ENOUGH_OBSERVATIONS");
+        require(observationLength > 1, "GCD Protocol: NOT_ENOUGH_OBSERVATIONS");
         uint observationIndex = observationLength - 1;
         uint timestampObs; uint price0CumulativeObs; uint price1CumulativeObs;
         (timestampObs, price0CumulativeObs, price1CumulativeObs) = keep3rV1Oracle.observations(pair, observationIndex);
@@ -102,7 +102,7 @@ contract ChainlinkedKeep3rV1OracleMainAsset is IOracleUsd {
             (timestampObs, price0CumulativeObs, price1CumulativeObs) = keep3rV1Oracle.observations(pair, observationIndex);
             if (block.timestamp - timestampObs > maxObservationTimeBack) break;
         }
-        require(block.timestamp - timestampObs <= maxObservationTimeBack, "Unit Protocol: STALE_PRICES");
+        require(block.timestamp - timestampObs <= maxObservationTimeBack, "GCD Protocol: STALE_PRICES");
         uint timeElapsed = block.timestamp - timestampObs;
         if (token0 == tokenIn) {
             return computeAmountOut(price0CumulativeObs, price0Cumulative, timeElapsed, amountIn);
