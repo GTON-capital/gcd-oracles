@@ -10,6 +10,7 @@
     "@nomiclabs/hardhat-waffle": "^2.0.3",
     "@typechain/ethers-v5": "^10.0.0",
     "@typechain/hardhat": "^6.0.0",
+    "@uniswap/v3-core": "^1.0.1",
     "@uniswap/v3-periphery": "^1.4.1",
     "dotenv": "^8.2.0",
     "ethereumjs-common": "^1.5.2",
@@ -22,6 +23,7 @@
     "web3": "^1.3.4"
   },
   "scripts": {
-    "deploy:ropsten": "hardhat run --network ropsten ./scripts/deploy.js"
+    "deploy:ropsten": "hardhat run --network ropsten ./scripts/deploy.js",
+    "pool:ropsten": "hardhat run --network ropsten ./scripts/uniswapPoolUpdate.ts"
   }
 }
