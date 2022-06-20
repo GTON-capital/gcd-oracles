@@ -24,6 +24,7 @@
   },
   "scripts": {
     "deploy:ropsten": "hardhat run --network ropsten ./scripts/deploy.js",
+    "deploy:gton": "hardhat run --network gton ./scripts/deploy.js",
     "pool:ropsten": "hardhat run --network ropsten ./scripts/uniswapPoolUpdate.ts"
   }
 }

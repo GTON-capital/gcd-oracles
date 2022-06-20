@@ -15,7 +15,9 @@ async function main() {
 async function increaseCardinality() {
     let contract = await getContract()
 
-    let tx = await contract.increaseObservationCardinalityNext(10)
+    // 144 - roughly 30 mins
+    let tx = await contract.increaseObservationCardinalityNext(144) 
+    await tx.wait()
     console.log("Tx hash:  " + tx.hash)
 }
 
