@@ -50,7 +50,7 @@ var deployer;
 async function main() {
     deployer = await getDeployer()
 
-    await deployMockAggregatorUSDCUSD()
+    await setChainlinkAddressForUSDC()
 }
 
 async function getDeployer() {
@@ -205,6 +205,21 @@ async function deployChainlinkedOracleMainAsset() {
             vaultParameters, // VaultParameters
         ]
       });
+}
+
+async function setChainlinkAddressForUSDC() {
+    const Factory = await ethers.getContractFactory("ChainlinkedOracleMainAsset")
+    const contract = Factory.attach(chainlinkedOracleMainAsset)
+
+    let tx = await contract.setAggregators(
+        [usdcAddress], // tokenAddresses1
+        [chainlinkUSDCUSDAddress], // _usdAggregators
+        [], // tokenAddresses2
+        [], // _ethAggregators
+    )
+    console.log("Set USDC chainlink address tx: " + tx.hash)
+    await tx.wait()
+    console.log("USDC chainlink address set")
 }
 
 async function deployUniV3() {
