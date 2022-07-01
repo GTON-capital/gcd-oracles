@@ -21,17 +21,20 @@ contract UniswapV3OracleGCD is IOracleUsd {
 
   mapping (address => QuoteParams) public quoteParams;
 
-  // GCD Protocol parameters
+  // GCD Protocol Vault parameters
   // Ropsten: 0x634cd07fce65a2f2930b55c7b1b20a97196d362f
+  // Goerli: 0x634cd07fce65a2f2930b55c7b1b20a97196d362f
+  // Ethereum: 
   IVaultParameters public constant vaultParameters = IVaultParameters(0x634Cd07fce65a2f2930B55c7b1b20a97196d362F);
 
-  // Uniswap V3 factory
+  // Uniswap V3 factory - same on all chaons
   address public constant factory = 0x1F98431c8aD98523631AE4a59f267346ea31F984;
 
   // wETH
   // Ropsten: 0xc778417E063141139Fce010982780140Aa0cD5Ab
+  // Goerli: 0xB4FBF271143F4FBf7B91A5ded31805e42b2208d6
   // Ethereum: 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2
-  address public defaultQuoteAsset = 0xc778417E063141139Fce010982780140Aa0cD5Ab;
+  address public defaultQuoteAsset = 0xB4FBF271143F4FBf7B91A5ded31805e42b2208d6;
 
   // 0.3%
   uint24 public constant defaultPoolFee = 3000;
@@ -40,7 +43,9 @@ contract UniswapV3OracleGCD is IOracleUsd {
 
   // GCD Protocol oracle registry
   // Ropsten: 0x85d7676ff4339C7e59eb7e90F160E909fc65d3bd
-  IOracleRegistry public constant oracleRegistry = IOracleRegistry(0x85d7676ff4339C7e59eb7e90F160E909fc65d3bd);
+  // Goerli: 0xC0B881e21eE1B847A659206C0214E3357788E88E
+  // Ethereum: 
+  IOracleRegistry public constant oracleRegistry = IOracleRegistry(0xC0B881e21eE1B847A659206C0214E3357788E88E);
 
   event QuoteParamsSet(address indexed baseAsset, QuoteParams quoteParams);
   event DefaultTWAPPeriodSet(uint32 twapPeriod);
