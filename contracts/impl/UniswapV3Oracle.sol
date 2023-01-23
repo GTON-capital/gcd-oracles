@@ -25,16 +25,19 @@ contract UniswapV3OracleGCD is IOracleUsd {
   // Ropsten: 0x24643a31abb6F06C451D2be5ED01D2f95571d14a
   // Goerli: 0x634cd07fce65a2f2930b55c7b1b20a97196d362f
   // Ethereum: 0x1c2a972841A64872178fC510CeE5C87301d91160
+  // BSC: 0x1c2a972841A64872178fC510CeE5C87301d91160
   IVaultParameters public constant vaultParameters = IVaultParameters(0x1c2a972841A64872178fC510CeE5C87301d91160);
 
-  // Uniswap V3 factory - same on all chaons
+  // Uniswap V3 factory - same on all chains
   address public constant factory = 0x1F98431c8aD98523631AE4a59f267346ea31F984;
 
   // wETH
   // Ropsten: 0xc778417E063141139Fce010982780140Aa0cD5Ab
   // Goerli: 0xB4FBF271143F4FBf7B91A5ded31805e42b2208d6
   // Ethereum: 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2
-  address public defaultQuoteAsset = 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2;
+  // BSC: 0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c
+  // Mumbai: 0x9c3c9283d3e44854697cd22d3faa240cfb032889
+  address public defaultQuoteAsset = 0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c;
 
   // 0.3%
   uint24 public constant defaultPoolFee = 3000;
